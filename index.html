@@ -1271,5 +1271,44 @@ var e="script#wp-emoji-settings",t=document.querySelector(e);if(!(t instanceof H
     Reject Non-Essential
   </button>
 </div>	
+	<script>
+function acceptCookies() {
+  localStorage.setItem('cookieConsent', 'accepted');
+
+  gtag('consent', 'update', {
+    'ad_storage': 'granted',
+    'ad_user_data': 'granted',
+    'ad_personalization': 'granted',
+    'analytics_storage': 'granted'
+  });
+
+  document.getElementById('cookie-banner').style.display = 'none';
+}
+
+function rejectCookies() {
+  localStorage.setItem('cookieConsent', 'rejected');
+
+  gtag('consent', 'update', {
+    'ad_storage': 'denied',
+    'ad_user_data': 'denied',
+    'ad_personalization': 'denied',
+    'analytics_storage': 'denied'
+  });
+
+  document.getElementById('cookie-banner').style.display = 'none';
+}
+
+window.addEventListener('load', function() {
+  var consent = localStorage.getItem('cookieConsent');
+
+  if (consent === 'accepted') {
+    acceptCookies();
+  } else if (consent === 'rejected') {
+    rejectCookies();
+  } else {
+    document.getElementById('cookie-banner').style.display = 'block';
+  }
+});
+</script>
 </body>
 </html>
